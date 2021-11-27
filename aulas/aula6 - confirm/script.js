@@ -1,0 +1,2 @@
+var res = confirm("Deseja continuar?");//confirm é um metodo do objeto window, não há a necessidade de chamar o objeto window para o confirm. Abrira uma caixa no browser com dois botoes OK e Cancelar. O botao OK retorna a constante TRUE e o Cancelar retorna a constante FALSE.
+document.write(res)
