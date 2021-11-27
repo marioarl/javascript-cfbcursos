@@ -1,6 +1,7 @@
 # javascript-cfbcursos
  ## Curso de JavaScript do CFB Cursos
  <a href="http://cfbcursos.com.br/" target="_blank"><img src="http://cfbcursos.com.br/wp-content/uploads/2017/08/LOGO3-CFB-SITE-450x155.png" alt="cfb cursos"  width="200"></a>
+ <p><em>Link para o site no logo acima</p>
  
  
     Acesse as redes sociais do CFB Cursos
