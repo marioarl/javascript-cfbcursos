@@ -41,5 +41,5 @@ document.write(msg);
 
 //Quando utilizar o IF e o SWITCH?
 // O IF é utilizado quando nao sabemos o valor da váriavel.
-//O SWITCH vamos utilizando quando sabemos os valores que poderao estar na variavel.
+//O SWITCH vamos utilizar quando sabemos os valores que poderao estar na variavel.
 
