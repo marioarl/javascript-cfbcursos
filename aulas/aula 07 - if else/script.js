@@ -14,7 +14,7 @@ if (teste logico) {
 	bloco
 }
 
-O teste logico sempre irá retornar 1 ==> ture ou 0 ==> false 
+O teste logico sempre irá retornar 1 ==> true ou 0 ==> false 
  */
 
 if(10 > 5) {
