@@ -1,0 +1,24 @@
+#jogador {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: #00f;
+	width: 50px;
+	height: 50px;
+}
+
+.botao{
+	margin-top: 50px;
+
+	
+}
+
+.ini{
+	background-color: darkgreen;
+	color: white;
+}
+
+.par {
+	background-color: red;
+	color: white;
+}
