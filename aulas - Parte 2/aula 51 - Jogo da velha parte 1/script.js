@@ -7,7 +7,59 @@ var nivel = 1; //Nivel do jogo
 var jogadaCpu = 1 //Armazena a jogada da CPU
 var quemComeca = 1; // Inicialmente ficara como 1(cpu)
 
-function jogar(p){
+
+function cpuJoga(){ //P4 0:45 - 13:52
+	if(jogando){
+		var l, c;
+		if(nivel == 1){
+			do{
+				l = Math.round(Math.random()*2);
+				c = Math.round(Math.random()*2);
+
+			}while(jogo[l][c]!="");
+			jogo[l][c]="O";
+		}else if(nivel ==2){
+			//NIvel 2
+		}
+		verifica = verificaVitoria();
+		if(verifica !=""){
+			alert(verifica + " venceu");
+			jogando = false;
+		}
+		atualizaTabuleiro();
+		quemJoga=0;
+
+	}
+}
+
+function verificaVitoria(){ //P4 06:40
+	var l,c;
+	//LINHAS
+	for(l=0;l < 3; l++){
+		if((jogo[l][0] == jogo[l][1])&&(jogo[l][1] == jogo[l][2])){
+			return jogo[l][0];
+
+		}
+	}
+	//COLUNAS
+	for(c=0;c < 3; c++){
+		if((jogo[0][c] == jogo[1][c])&&(jogo[1][c] == jogo[2][c])){
+			return jogo[0][c];
+
+		}
+	}
+	//DIAGONAIS
+	if((jogo[0][0] == jogo[1][1])&&(jogo[1][1] == jogo[2][2])){
+		return jogo[0][0];
+	}
+	if((jogo[0][2] == jogo[1][1])&&(jogo[1][1] == jogo[2][0])){
+		return jogo[0][2];
+	}
+	return "";
+}
+
+
+function jogar(p){ //P2 - 6:30
 	if((jogando)&&(quemJoga==0)){
 		switch(p){
 			case 1: 
@@ -66,29 +118,37 @@ function jogar(p){
 				}
 			break;
 			
-			case 9: 
+			default: 
 				if(jogo[2][2] == ""){
 					jogo[2][2] = "X";
 					quemJoga=1;
 				}
 			break;		
 		}
-		atualizaTabuleiro();	
+		if(quemJoga == 1){
+			atualizaTabuleiro();
+			verifica = verificaVitoria();
+			if(verifica !=""){
+				alert(verifica + " venceu");
+				jogando = false;
+			}
+			cpuJoga();
+		}	
 	}
 }
 
-function atualizaTabuleiro(){
+function atualizaTabuleiro(){ //P3 3:20
 	for(var l=0; l < 3; l++){
 		for(var c=0; c < 3; c++){
 			if(jogo[l][c] == "X"){
 				tabuleiro[l][c].innerHTML="X";
-				tabuleiro[l][c].style.cursos="default";
+				tabuleiro[l][c].style.cursor="default";
 			}else if(jogo[l][c] == "O"){
-				tabuleiro[l][c].innerHTML="O";
-				tabuleiro[l][c].style.cursos="default";
-			} else{
-				tabuleiro[l][c].innerHTML="";
-				tabuleiro[l][c].style.cursos="pointer";
+				tabuleiro[l][c].innerHTML = "O";
+				tabuleiro[l][c].style.cursor="default";
+			}else{
+				tabuleiro[l][c].innerHTML = "";
+				tabuleiro[l][c].style.cursor="pointer";
 
 			}
 
@@ -97,7 +157,7 @@ function atualizaTabuleiro(){
 
 }
 
-function inicia(){
+function inicia(){ //P2 11:20
 	jogando = true;
 	jogadaCpu = 1;
 	jogo = [
@@ -108,8 +168,8 @@ function inicia(){
 	tabuleiro = [
 		[document.getElementById("p1"),document.getElementById("p2"), document.getElementById("p3") ],
 		[document.getElementById("p4"),document.getElementById("p5"), document.getElementById("p6")],
-		document.getElementById("p7"),document.getElementById("p8"), document.getElementById("p9")
-	]
+		[document.getElementById("p7"),document.getElementById("p8"), document.getElementById("p9")]
+	];
 
 
 }
