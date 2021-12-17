@@ -170,6 +170,17 @@ function inicia(){ //P2 11:20
 		[document.getElementById("p4"),document.getElementById("p5"), document.getElementById("p6")],
 		[document.getElementById("p7"),document.getElementById("p8"), document.getElementById("p9")]
 	];
+	atualizaTabuleiro();
+	if(quemComeca == 1){
+		quemComeca = 0;
+		quemJoga = quemComeca;
+		document.getElementById("dvQuemComeca").innerHTML="Quem Começa: Jogador"
+	}else {
+		quemComeca = 1;
+		quemJoga = quemComeca;
+		document.getElementById("dvQuemComeca").innerHTML="Quem Começa: CPU"
+		cpuJoga();
+	}
 
 
 }
