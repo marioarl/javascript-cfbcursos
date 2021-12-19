@@ -48,6 +48,36 @@ function controlajog(){
 	}
 }
 
+//Controla a CPU - P5 0:35
+function controlacpu(){
+	if(jogo){
+		if((posBolaX >(campoW /2))&&(bolaX > 0)){
+			//Movimentar CPU
+			if(((posBolaY + (bolaH/2))>((posCpuY+(barraH/2)))+velCpu)){
+				//Mover para baixo
+				if((posCpuY+barraH) <= campoH){
+					posCpuY+=velCpu;
+				}
+			}else if((posBolaY+(bolaH/2)) < (posCpuY + (barraH/2))-velCpu){
+				//Mover para cima
+				if(posCpuY >= 0){
+					posCpuY-=velCpu;
+				}
+			}
+
+		}else{
+			//posicionar CPU no centro
+			if((posCpuY+(barraH/2)) < (campoH/2)){
+					posCpuY += velCpu;
+			}else if ((posCpuY+(barraH/2)) > (campoH/2)){
+				posCpuY -= velCpu;
+
+			}
+		}
+		vcpu.style.top=posCpuY + "px";
+	}
+}
+
 //Controla a bola - P3 8:00
 function controlaBola(){ 
 	posBolaX += velBola * bolaX;
@@ -132,6 +162,7 @@ function game(){
 	if (jogo){
 		controlajog();
 		controlaBola();
+		controlacpu();
 	}
 	frames = requestAnimationFrame(game);
 }
