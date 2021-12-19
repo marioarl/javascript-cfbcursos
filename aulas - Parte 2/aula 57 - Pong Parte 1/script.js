@@ -17,7 +17,7 @@ var posCpuX, posCpuY;
 var dirJy;
 
 //Posicoes inicias - P1 15:27
-var posJogIniY = 180, posCpuIniY = 180, posBolaIniX = 475, posBolaIniY = 240;
+var posJogIniY = 180, posJogIniX=10 , posCpuIniY = 180, posCpuIniX =930 ,posBolaIniX = 475, posBolaIniY = 240;
 
 //Tamanhos - P1 17:40
 var campoX = 0, campoY = 0, campoW = 960, campoH = 500;
@@ -40,8 +40,38 @@ jogo = false; //P2 06:05
 function controlajog(){
 	if(jogo){
 		posJogadorY += velJogador * dirJy;
+		if(((posJogadorY+barraH) >= campoH)||((posJogadorY) <= 0) // P3 - 3:03
+		){ 
+			posJogadorY += (velJogador * dirJy) * (-1);
+		} 
 		vjogador.style.top = posJogadorY + "px";
 	}
+}
+
+//Controla a bola - P3 8:00
+function controlaBola(){ 
+	posBolaX += velBola * bolaX;
+	posBolaY += velBola * bolaY;
+	
+	//Colisao com jogador
+	if(
+		(posBolaX <= posJogadorX+barraW) &&
+		((posBolaY + bolaH >= posJogadorY)&&(posBolaY <=posJogadorY+barraH))
+	){
+		bolaY=(((posBolaY+(bolaH/2))-(posJogadorY+(barraH/2))) / 16);
+		bolaX *= -1;
+	}
+
+	//Colisao com CPU
+	if(
+		(posBolaX >= posCpuX-barraW) &&
+		((posBolaY + bolaH >= posCpuY)&&(posBolaY <=posCpuY+barraH))
+	){
+		bolaY=(((posBolaY+(bolaH/2))-(posCpuY+(barraH/2))) / 16);
+		bolaX *= -1;
+	}
+	vbola.style.top=posBolaY + "px";
+	vbola.style.left=posBolaX + "px";
 }
 
 
@@ -71,6 +101,7 @@ function teclaUp(event){
 function game(){
 	if (jogo){
 		controlajog();
+		controlaBola();
 	}
 	frames = requestAnimationFrame(game);
 }
@@ -82,9 +113,17 @@ function iniciaJogo(){
 		cancelAnimationFrame(frames);
 		jogo= true;
 		dirJy = 0;
+		bolaY = 0;
+		if((Math.random() *10) <5){
+			bolaX = -1
+		}else{
+			bolaX = 1
+		}
 		posBolaX = posBolaIniX;
 		posBolaY = posBolaIniY;
-		posJogadorY = 0;
+		posJogadorY = posJogIniY;
+		posJogadorX = posJogIniX;
+		posCpuX = posCpuIniX
 		posCpuY = posCpuIniY;
 		game();
 	}	
