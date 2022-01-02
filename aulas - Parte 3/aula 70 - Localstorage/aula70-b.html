@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage B</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <p>LocalStorage - Curso de JavaScript</p>
+    <p id="painel"></p>
+
+    <button onclick="mostraConf()">Configurações</button>
+
+    <form name="fconf" id="fconf">
+        <label for="fnome">Nome:</label><br>
+        <input type="text" name="fnome" id="fnome" size="20"><br><br>
+
+        <label for="fcorF">Cor fundo:</label><br>
+        <input type="radio" name="fcorF" onclick="defineCor(1,'#000')">Preto
+        <input type="radio" name="fcorF" onclick="defineCor(1,'#fff')">Branco
+        <input type="radio" name="fcorF" onclick="defineCor(1,'#f00')">Vermelho
+        <input type="radio" name="fcorF" onclick="defineCor(1,'#0f0')">Verde
+        <input type="radio" name="fcorF" onclick="defineCor(1,'#00f')">Azul <br><br>
+
+        <label for="fcorT">Cor texto:</label><br>
+        <input type="radio" name="fcorT" onclick="defineCor(2,'#000')">Preto
+        <input type="radio" name="fcorT" onclick="defineCor(2,'#fff')">Branco <br> <br>
+
+        <input type="button" value="Salvar" onclick="salvar()">
+    </form>
+
+    
+
+    <script src="script2.js"></script>
+</body>
+</html>
