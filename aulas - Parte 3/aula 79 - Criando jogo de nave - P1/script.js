@@ -19,8 +19,9 @@ function teclaDw(event){
     }else if (tecla == "ArrowDown"){
         diryJ =1;
 
-    }else if (tecla == "Space"){
+    }else if (tecla == " "){
         //Atirar
+        atira(pjx+17, pjy);
     }
 }
 
@@ -34,22 +35,38 @@ function teclaUp(event){
     }
 }
 
+
+function atira(x, y){
+    var t = document.createElement("div");
+    var att1 = document.createAttribute("class");
+    var att2 = document.createAttribute("style");
+    
+    att1.value = "tiroJog";
+    att2.value = "top:"+y+"px;left:" +x+ "px";
+    t.setAttributeNode(att1);
+    t.setAttributeNode(att2);
+    document.body.appendChild(t);
+}
+
 function controlaJogador(){
-    
-    
+    pjy+= diryJ * velJ;
+    pjx+= dirxJ * velJ;
+    jog.style.top=pjy+"px";
+    jog.style.left=pjx+"px";
 
 }
 
 function gameLoop(){
     if(jogo){
         //FUNCOES DE CONTROLE
+        controlaJogador();
     }
     frames = requestAnimationFrame(gameLoop);
 
 }
 
 function inicia(){
-    jogo = false;
+    jogo = true;
 
     //Ini Tela
     tamTelaH = window.innerHeight;
@@ -63,6 +80,8 @@ function inicia(){
     jog = document.getElementById("naveJog");
     jog.style.top=pjy+"px";
     jog.style.left=pjx+"px";
+
+    gameLoop()
 
 
 }
