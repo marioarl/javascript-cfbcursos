@@ -96,6 +96,7 @@ function controleTiros(){
             var pt=tiros[i].offsetTop;
             pt-=velT;
             tiros[i].style.top = pt + "px";
+            colisaoTiroBomba(tiros[i]);
             if(pt<0){
                 document.body.removeChild(tiros[i]);
                 //tiros[i].remove(); ==> Podemos tambem utilizar o .remove()
@@ -103,6 +104,30 @@ function controleTiros(){
         }
     }
 
+}
+
+function colisaoTiroBomba(tiro){
+    var tam=bombasTotal.length;
+    for(var i=0; i<tam;i++){
+        if(bombasTotal[i]){
+            if(
+                (
+                    (tiro.offsetTop<=(bombasTotal[i].offsetTop+40))&& //Cima tiro com baixo da bomba
+                    ((tiro.offsetTop+6) >=(bombasTotal[i].offsetTop)) //Baixo tiro com cima da bomba
+                )
+                &&
+                (
+                    (tiro.offsetLeft<=(bombasTotal[i].offsetLeft+24)) && //Esquerda do tiro com direita da bomba
+                    ((tiro.offsetLeft+6)>=(bombasTotal[i].offsetLeft)) //Direita do tiro com esquerda da bomba
+                )
+
+
+            ){
+                bombasTotal[i].remove();
+                tiro.remove();
+            }
+        }
+    }
 }
 
 function controlaJogador(){
