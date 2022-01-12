@@ -5,9 +5,10 @@ var jogo;
 var frames;
 var contBombas, painelContBombas, velB, tmpCriaBomba;
 var bombasTotal;
-var vidaPlaneta;
+var vidaPlaneta, barraPlaneta;
 var ie; //Indice explosao
 var isom; //Indice som
+var telaMsg;
 
 
 
@@ -135,8 +136,8 @@ function colisaoTiroBomba(tiro){
 }
 
 function criaExplosao(tipo,x,y){ //Tipo 1 = Ar , 2 = Terra
-    if(document.getElementById("explosao" + (ie-3))){
-        document.getElementById("explosao" + (ie-3)).remove();
+    if(document.getElementById("explosao" + (ie-4))){
+        document.getElementById("explosao" + (ie-4)).remove();
     }
     var explosao = document.createElement("div");
     var img = document.createElement("img");
@@ -186,6 +187,25 @@ function controlaJogador(){
 
 }
 
+function gerenciaGame(){
+    barraPlaneta.style.width = vidaPlaneta+"px";
+    if (contBombas <=0){
+        jogo = false;
+        clearInterval(tmpCriaBomba);
+        telaMsg.style.backgroundImage="url('imagens/vitoria.jpg')";
+        telaMsg.style.display = "block";
+    }
+    if(vidaPlaneta<=0){
+        jogo = false;
+        clearInterval(tmpCriaBomba);
+        telaMsg.style.backgroundImage="url('imagens/derrota.jpg')";
+        telaMsg.style.display = "block";
+
+    }
+}
+
+
+
 function gameLoop(){
     if(jogo){
         //FUNCOES DE CONTROLE
@@ -193,6 +213,7 @@ function gameLoop(){
         controleTiros();
         controlaBomba();
     }
+    gerenciaGame();
     frames = requestAnimationFrame(gameLoop);
 
 }
@@ -221,9 +242,14 @@ function inicia(){
 
     //Controles do planeta
     vidaPlaneta = 300;
+    barraPlaneta = document.getElementById("barraPlaneta");
+    barraPlaneta.style.width=vidaPlaneta+"px";
 
     //Controles de explosao
     ie = isom = 0;
+
+    //Telas
+    telaMsg = document.getElementById("telaMsg");
     gameLoop()
 
 
