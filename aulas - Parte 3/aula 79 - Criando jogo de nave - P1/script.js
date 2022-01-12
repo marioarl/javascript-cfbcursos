@@ -218,8 +218,31 @@ function gameLoop(){
 
 }
 
-function inicia(){
+function reinicia(){
+    bombasTotal = document.getElementsByClassName("bomba");
+    var tam= bombasTotal.length;
+    for(var i=0; i < tam; i++){
+        if(bombasTotal[i]){
+            bombasTotal[i].remove();
+        }
+    }
+    telaMsg.style.display="none";
+    clearInterval(tmpCriaBomba);
+    cancelAnimationFrame(frames);
+    vidaPlaneta = 300;
+    pjx = tamTelaW / 2;
+    pjy = tamTelaH / 2;
+    jog.style.top = pjy+ "px";
+    jog.style.left = pjx+ "px";
+    contBombas = 150;
     jogo = true;
+    tmpCriaBomba = setInterval(criaBomba, 1700);
+    gameLoop();
+
+}
+
+function inicia(){
+    jogo = false;
 
     //Ini Tela
     tamTelaH = window.innerHeight;
@@ -235,10 +258,8 @@ function inicia(){
     jog.style.left=pjx+"px";
 
     //Controles das bombas
-    clearInterval(tmpCriaBomba);
     contBombas=150;
     velB=3;
-    tmpCriaBomba = setInterval(criaBomba, 1700);
 
     //Controles do planeta
     vidaPlaneta = 300;
@@ -250,7 +271,10 @@ function inicia(){
 
     //Telas
     telaMsg = document.getElementById("telaMsg");
-    gameLoop()
+    telaMsg.style.backgroundImage="url('imagens/intro.jpg')";
+    telaMsg.style.display="block";
+    document.getElementById("btnJogar").addEventListener("click", reinicia);
+    
 
 
 }
