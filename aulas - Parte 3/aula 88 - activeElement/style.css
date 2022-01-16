@@ -1,0 +1,36 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#ex1{
+    display: inline-block;
+}
+
+#ex2{
+    display: inline-block;
+    
+}
+
+#tag_ativa{
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+}
+#cx{
+    margin-top: -15px;
+    width: 100px;
+    background-color: tomato;
+    border: 1px solid black;
+}
+#elem_ativo{
+    width: 200px;
+    height: 100px;
+    border: 1px solid black;
+}
+
+#cx1{
+    width: 150px;
+    background-color: blue;
+    color: white;
+    border: 1px solid black;
+}
